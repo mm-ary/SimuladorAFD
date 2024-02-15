@@ -63,8 +63,7 @@ void imprimir_gramatica(GRAMATICA *gramatica) {
     printf("\nTransicoes: ");
     for(int i = 0; i < sizeof(gramatica->estados); i++) {
         printf("q%d -> ", gramatica->alfabeto[i]);
-        
-        
+        imprimir_lista(gramatica->transicoes[i]);
     }
 }
 
