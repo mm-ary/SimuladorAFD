@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "sistema.h"
 
+// bacca
 int main() {
     int estados[] = {0, 1, 2, -1};
     char alfabeto[] = {'a', 'b', 'c'};
@@ -16,4 +17,6 @@ int main() {
     inserir_transicao(gramatica, 2, 0, 'b');
 
     imprimir_gramatica(gramatica);
+
+    testar_palavra(gramatica, "bacca");
 }

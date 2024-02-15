@@ -23,11 +23,6 @@ typedef struct{
 
 // ----------- SISTEMA -----------
 
-// Conta o número de elementos de um vetor
-// Entrada: ponteiro para um vetor que termina com NULL
-// Saída: número de elementos
-int contar_tamanho_vetor(int *vetor);
-
 // Constrói a especificação da gramática
 // Entrada: ponteiro para alfabeto, estados e finais
 // Saída: nenhuma
@@ -47,7 +42,6 @@ void imprimir_gramatica(GRAMATICA *gramatica);
 // Entrada: ponteiro para a gramatica não nula e palavra
 // Saída: nenhuma
 void testar_palavra(GRAMATICA *gramatica, char *palavra);
-
 
 
 #endif

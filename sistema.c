@@ -41,8 +41,8 @@ GRAMATICA* criar_gramatica(char *alfabeto, int *estados, int *finais) {
 }
 
 // Faz inserção na cauda da lista
-// Entrada: ponteiro para a lista, estado para onde vai e simbolo lido
-// Saída: ponteiro para a lista
+// Entrada: ponteiro para a cabeça da lista, estado para onde vai e simbolo lido
+// Saída: ponteiro para a lista com elemento inserido
 struct no* inserir_cauda(struct no* l, int estado_destino, char simbolo) {
     if(l == NULL) {
         l = (struct no*) malloc(sizeof(struct no));
@@ -65,6 +65,9 @@ void inserir_transicao(GRAMATICA *gramatica, int estado_origem, int estado_desti
     gramatica->transicoes[estado_origem] = inserir_cauda(gramatica->transicoes[estado_origem], estado_destino, simbolo);
 }
 
+// Imprime a lista de transições de um único estado
+// Entrada: ponteiro para a cabeça da lista
+// Saída: nenhuma
 void imprimir_lista(struct no* l) {
     if(l == NULL)
         return;
@@ -102,9 +105,45 @@ void imprimir_gramatica(GRAMATICA *gramatica) {
     }
 }
 
+// Busca um simbolo nas transições de um estado
+// Entrada: ponteiro para a lista e o simbolo
+// Saída: o estado para onde vai caso o simbolo exista, -1 caso não
+int buscar_simbolo(struct no *l, char simbolo) {
+    if(l == NULL)
+        return -1;
+    if(l->simbolo == simbolo)
+        return l->estado;
+    return buscar_simbolo(l->prox, simbolo);
+}
+
+// Verifica se um estado é final
+// Entrada: ponteiro para vetor de finais e o estado
+// Saída: 1 se encontrou, 0 se não
+int is_final(int *finais, int estado) {
+    int tamanho = contar_tamanho_vetor(finais);
+
+    for(int i = 0; i < tamanho; i++)
+        if(finais[i] == estado)
+            return 1;
+    return 0;
+}
+
 // Simula o processamento da palavra no AFD especificado
 // Entrada: ponteiro para a gramatica não nula e palavra
 // Saída: nenhuma
 void testar_palavra(GRAMATICA *gramatica, char *palavra) {
+    // Verificar se todos os símbolos foram lidos
+    int i = 0;
 
+    printf("\n");
+    for(char *simbolo = palavra; simbolo != NULL; simbolo++) {
+        printf("[q%d]%s\n", i, simbolo);
+        i = buscar_simbolo(gramatica->transicoes[i], *simbolo);
+        if(i == -1)
+            break;
+    }
+    if(i == -1 || is_final(gramatica->finais, i))
+        printf("REJEITA\n");
+    else
+        printf("ACEITA\n");
 }
