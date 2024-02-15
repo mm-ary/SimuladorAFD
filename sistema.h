@@ -23,15 +23,25 @@ typedef struct{
 
 // ----------- SISTEMA -----------
 
+// Conta o número de elementos de um vetor
+// Entrada: ponteiro para um vetor que termina com NULL
+// Saída: número de elementos
+int contar_tamanho_vetor(int *vetor);
+
 // Constrói a especificação da gramática
 // Entrada: ponteiro para alfabeto, estados e finais
 // Saída: nenhuma
-void criar_gramatica(char *alfabeto, int *estados, int *finais);
+GRAMATICA* criar_gramatica(char *alfabeto, int *estados, int *finais);
 
 // Insere uma transição na gramática
 // Entrada: ponteiro para a gramática, estado de onde sai a transição, estado para onde vai e o simbolo lido
 // Saída: nenhuma
 void inserir_transicao(GRAMATICA *gramatica, int estado_origem, int estado_destino, char simbolo);
+
+// Imprime a gramática e suas transições
+// Entrada: ponteiro para a gramática
+// Saída: nenhuma
+void imprimir_gramatica(GRAMATICA *gramatica);
 
 // Simula o processamento da palavra no AFD especificado
 // Entrada: ponteiro para a gramatica não nula e palavra
