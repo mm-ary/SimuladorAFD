@@ -1,1 +1,2 @@
 - implementar um verificador na inserção para não permitir transições não deterministicas
+- implementar reset para poder carregar arquivos sem encerrar o programa
