@@ -39,3 +39,38 @@ struct no* inserir_cauda(struct no* l, int estado_destino, char simbolo) {
 void inserir_transicao(GRAMATICA *gramatica, int estado_origem, int estado_destino, char simbolo) {
     gramatica->transicoes[estado_origem] = inserir_cauda(gramatica->transicoes[estado_origem], estado_destino, simbolo);
 }
+
+void imprimir_lista(struct no* l) {
+    if(l == NULL)
+        return;
+    printf("q%d | %c -> ", l->estado, l->simbolo);
+    imprimir_lista(l->prox);
+}
+
+void imprimir_gramatica(GRAMATICA *gramatica) {
+    printf("\nAlfabeto: ");
+    for(int i = 0; i < sizeof(gramatica->alfabeto); i++)
+        printf("%c ", gramatica->alfabeto[i]);
+
+    printf("\nEstados: ");
+    for(int i = 0; i < sizeof(gramatica->estados); i++)
+        printf("q%d ", gramatica->estados[i]);
+
+    printf("\nFinais: ");
+    for(int i = 0; i < sizeof(gramatica->finais); i++)
+        printf("q%d ", gramatica->finais[i]);
+
+    printf("\nTransicoes: ");
+    for(int i = 0; i < sizeof(gramatica->estados); i++) {
+        printf("q%d -> ", gramatica->alfabeto[i]);
+        
+        
+    }
+}
+
+// Simula o processamento da palavra no AFD especificado
+// Entrada: ponteiro para a gramatica não nula e palavra
+// Saída: nenhuma
+void testar_palavra(GRAMATICA *gramatica, char *palavra) {
+
+}

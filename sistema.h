@@ -33,6 +33,11 @@ void criar_gramatica(char *alfabeto, int *estados, int *finais);
 // Saída: nenhuma
 void inserir_transicao(GRAMATICA *gramatica, int estado_origem, int estado_destino, char simbolo);
 
+// Simula o processamento da palavra no AFD especificado
+// Entrada: ponteiro para a gramatica não nula e palavra
+// Saída: nenhuma
+void testar_palavra(GRAMATICA *gramatica, char *palavra);
+
 
 
 #endif
